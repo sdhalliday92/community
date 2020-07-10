@@ -7,7 +7,6 @@ from application import routes
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
-db = SQLAlchemy(app)
 
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -20,7 +19,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
                                         ':' + \
                                         environ.get('MYSQL_PORT') + \
                                         '/' + \
-                                        environ.get('MYSQL_DB_NAME2')
+                                        environ.get('MYSQL_DB_NAME')
+
+db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
+
